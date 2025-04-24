@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Scraper Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 30px; }
+        .book-card { background: #fff; border-radius: 10px; padding: 15px; box-shadow: 0 0 5px #ccc; margin-bottom: 20px; display: flex; }
+        img { height: 120px; margin-right: 20px; border-radius: 5px; }
+        h2 { margin: 0; font-size: 20px; }
+        .btn { padding: 10px 20px; background: #0d6efd; color: #fff; border: none; border-radius: 5px; text-decoration: none; }
+        .btn:hover { background: #084298; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { padding: 8px; width: 200px; }
+        label { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>📚 Book Scraper Dashboard</h1>
+
+    <!-- Stats Button (New) -->
+    <a href="/stats" class="btn">View Book Stats</a>
+
+    <form method="get">
+        <input type="text" name="search" placeholder="Search title...">
+        <label>
+            <input type="checkbox" name="in_stock"> In stock only
+        </label>
+        <button class="btn" type="submit">Filter</button>
+        <a href="/download/csv" class="btn">Download CSV</a>
+        <a href="/download/json" class="btn">Download JSON</a>
+    </form>
+
+    {% for book in books %}
+    <div class="book-card">
+        <img src="{{ book[3] }}" alt="cover">
+        <div>
+            <h2>{{ book[0] }}</h2>
+            <p>💰 {{ book[1] }}</p>
+            <p>📦 {{ book[2] }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
